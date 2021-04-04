@@ -1,0 +1,34 @@
+:root{
+    --deep: #1B72BF;
+    --sea: #348ABF;
+    --sky: #7EBFD9;
+    --light: #F2D377;
+    --sand: #F2B366;
+}
+
+body{
+    background-color: var(--light);
+}
+
+.card{
+    background-color: var(--sky);
+    border: 2px solid var(--sand);
+}
+
+.card-header{
+    background-color: var(--sea);
+    color: white;
+    border: 2px solid var(--sand)
+}
+
+h2{
+    text-transform: capitalize;
+}
+
+.jumbotron{
+    background-color: var(--deep);
+    color: white;
+}
+
+
+
