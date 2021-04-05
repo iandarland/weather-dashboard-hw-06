@@ -15,7 +15,7 @@ var storeSearches = function(){
 var populateSearches = function(){
     for (i = 0; i < searches.length; i++){
         $('.button-factory').append(`
-        <button class='prev weatherbox'>${searches[i]}</button>
+        <button class='prev weatherbox btn btn-primary m-1'>${searches[i]}</button>
         `)
     }
 };
@@ -31,7 +31,7 @@ var getCurrentWeather = function (cityInfo) {
             getUvi(data);        
             });
         } else {
-            alert('Error: ' + response.statusText);
+            $('#5-day-display').append(`<div class='weatherbox'>'Error: '${response.statusText}</div>`);
         };
     })
     // .catch(function (error) {
@@ -57,31 +57,40 @@ var getUvi = function(latLonData){
                 display5day(oneData);
             });
         }else{
-            alert('Error ' + response.statusText);
+            $('#5-day-display').append(`<div class='weatherbox'>'Error: '${response.statusText}</div>`);
         }
     })
     .catch(function (error) {
         alert('Sorry! we\'r having trouble connecting to our servers. Try again soon');
+        $('#5-day-display').append(`<div class='weatherbox'>Sorry! we\'r having trouble connecting to our servers. Try again soon'</div>`)
     });
 }
 
 var displayCurrent = function(info, cityInfo){
     $('.jumbotron').append(`
-            <div class= 'weatherbox'>
-            <h2>${cityInfo}</h2>
+            <div class= 'weatherbox ml-1'>
+            <h2 class= 'text-center'>${cityInfo}</h2>
             <h3>${moment().format('dddd M / D')}</h3>
             <p>${info.current.weather[0].main}<img src ='http://openweathermap.org/img/wn/${info.current.weather[0].icon}.png'></p>
             <p>Current Temp: ${parseInt(info.current.temp)}°F</p>
             <p>Humidity: ${info.current.humidity}</p>
             <p>Wind Speed: ${info.current.wind_speed}mph</p>
-            <p>UV Index: ${info.current.uvi}</p>
+            <p>UV Index: <span class= 'uvi'>${info.current.uvi}</span></p>
             </div>
     `);
+    if($('.uvi').val() < 3){
+        $('.uvi').css('background-color', 'green')
+    }else if($('uvi').val() < 6){
+        $('.uvi').css('background-color', 'yellow')
+    }else{
+        $('.uvi').css('background-color', 'red')
+    };
+    
 };
 var display5day = function(upcoming){
     for(i = 1; i < 6; i++){
         $('#5-day-display').append(`
-        <div class='d-flex flex-column col-10 col-md-5 col-xl-2 weatherbox card m-1 rounded'>
+        <div class='d-flex flex-column col-12 col-md-5 col-xl-3 weatherbox card m-1 rounded text-center'>
             <h3 class='card-header rounded-bottom'>${moment().add(i, 'days').format('dddd M/D')} <img src='http://openweathermap.org/img/wn/${upcoming.daily[i].weather[0].icon}.png'></h3>
             <div class='card-body'>
                 <p class= 'card-text'>Temp: ${parseInt(upcoming.daily[i].temp.max)}°F / ${parseInt(upcoming.daily[i].temp.min)}°F</p>
@@ -91,7 +100,10 @@ var display5day = function(upcoming){
         </div>
         `)
     }
+    $('.toggle').css('display', 'block')
 }
+
+
 
 var prevButtonHandler = function(event) {
     cityInfo = $(this).text();
@@ -103,6 +115,10 @@ var prevButtonHandler = function(event) {
 var clickEventHandler = function(event){
     event.preventDefault();
     cityInfo = $('#city-search').val();
+    if(cityInfo === ""){
+        alert('Please enter the name of a city')
+        return
+    }
     $('.weatherbox').remove();
     getCurrentWeather(cityInfo);
     storeSearches();
@@ -110,4 +126,4 @@ var clickEventHandler = function(event){
 };
 
 $('.btn').on('click', clickEventHandler);
-$('.button-factory').on('click', '.prev', prevButtonHandler)
+$('.button-factory').on('click', '.prev', prevButtonHandler);

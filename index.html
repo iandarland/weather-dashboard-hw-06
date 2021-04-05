@@ -10,19 +10,21 @@
 </head>
 <body>
     <div class='jumbotron'>
-        <h1>Weather Dashboard</h1>
+        <h1 class='text-center'>Weather Dashboard</h1>
     </div>
     <div id= 'app' class='row col-12'>
-        <div class='col-3'>
+        <div class='col-12 col-md-4 col-xl-3'>
             <form>
-                <input id='city-search' class="form-control" type="text" placeholder="Search Weather">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <h4 class='search-head'>Search Weather by City Name</h4>
+                <input id='city-search' class="form-control m-1" type="text" placeholder="Search Weather">
+                <button type="submit" class="btn btn-primary m-1">Search</button>
             </form>
+            <h4 class="toggle search-head">Previous Searches:</h4>
             <div class= 'button-factory'>
             </div>
         </div>
-        <div id='5-day-display' class='col-9 d-flex justify-content-center flex-wrap'>
-            <div class='col-12'>5 Day Forcast:</div>
+        <div id='5-day-display' class='col-12 col-md-8 col-xl-9 d-flex justify-content-center flex-wrap'>
+            <div class='col-12'><h4 class= 'toggle'>5 Day Forcast:</h4></div>
         </div>
     </div>
 </body>

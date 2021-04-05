@@ -10,6 +10,14 @@ body{
     background-color: var(--light);
 }
 
+button{
+    background-color: var(--sea)!important;
+}
+
+.prev{
+    text-transform: capitalize;
+}
+
 .card{
     background-color: var(--sky);
     border: 2px solid var(--sand);
@@ -21,6 +29,10 @@ body{
     border: 2px solid var(--sand)
 }
 
+.card-text{
+    color:white;
+}
+
 h2{
     text-transform: capitalize;
 }
@@ -28,6 +40,20 @@ h2{
 .jumbotron{
     background-color: var(--deep);
     color: white;
+}
+
+.search-head{
+    margin-left: 0.25rem;
+}
+
+.toggle{
+    display: none
+}
+
+.uvi{
+    border: 1px solid black;
+    padding: .25rem;
+    border-radius: 5px;
 }
 
 
