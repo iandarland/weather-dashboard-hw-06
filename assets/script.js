@@ -70,22 +70,22 @@ var displayCurrent = function(info, cityInfo){
     $('.jumbotron').append(`
             <div class= 'weatherbox ml-1'>
             <h2 class= 'text-center'>${cityInfo}</h2>
+            <p class='text-center'>${info.current.weather[0].main}<img src ='http://openweathermap.org/img/wn/${info.current.weather[0].icon}.png'></p>
             <h3>${moment().format('dddd M / D')}</h3>
-            <p>${info.current.weather[0].main}<img src ='http://openweathermap.org/img/wn/${info.current.weather[0].icon}.png'></p>
             <p>Current Temp: ${parseInt(info.current.temp)}°F</p>
-            <p>Humidity: ${info.current.humidity}</p>
+            <p>Humidity: ${info.current.humidity}%</p>
             <p>Wind Speed: ${info.current.wind_speed}mph</p>
             <p>UV Index: <span class= 'uvi'>${info.current.uvi}</span></p>
             </div>
     `);
-    if($('.uvi').val() < 3){
+    if($('.uvi').text() < 3){
         $('.uvi').css('background-color', 'green')
-    }else if($('uvi').val() < 6){
-        $('.uvi').css('background-color', 'yellow')
+    }else if($('uvi').text() < 6){
+        $('.uvi').css('background-color', 'yellow', 'color', 'black')
     }else{
         $('.uvi').css('background-color', 'red')
     };
-    
+    console.log($('.uvi').text())
 };
 var display5day = function(upcoming){
     for(i = 1; i < 6; i++){
