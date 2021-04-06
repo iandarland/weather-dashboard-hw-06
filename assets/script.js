@@ -21,7 +21,7 @@ var populateSearches = function(){
 };
 
 var getCurrentWeather = function (cityInfo) {
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityInfo + '&units=imperial&appid=d6e26b91ae63785bc530ad091f38b6c1';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInfo + '&units=imperial&appid=d6e26b91ae63785bc530ad091f38b6c1';
     
     fetch(apiUrl)
     .then(function (response) {
