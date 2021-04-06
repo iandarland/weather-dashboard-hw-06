@@ -1,6 +1,7 @@
 var searches = JSON.parse(localStorage.getItem('savedSearches'))|| [];
 var cityInfo = $('#city-search').val()
 
+// function to store searches in local storage and ensure that there are no duplicates
 var storeSearches = function(){
     var cityInfo = $('#city-search').val();
     searches.push(cityInfo)
@@ -12,6 +13,7 @@ var storeSearches = function(){
     localStorage.setItem("savedSearches", JSON.stringify(searches))
 }
 
+//funciton populates previous searches below search input box
 var populateSearches = function(){
     for (i = 0; i < searches.length; i++){
         $('.button-factory').append(`
@@ -20,6 +22,7 @@ var populateSearches = function(){
     }
 };
 
+// function to fetch first API to retrieve lat and long for next fetch
 var getCurrentWeather = function (cityInfo) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInfo + '&units=imperial&appid=d6e26b91ae63785bc530ad091f38b6c1';
     
@@ -39,7 +42,8 @@ var getCurrentWeather = function (cityInfo) {
     // });
 };
 
-
+// Function to fetch data from onecall to retrieve current weather and 5 day forecast
+// Function also calls displayCurrent and display5day functions 
 var getUvi = function(latLonData){
     var x = latLonData.coord.lat;
     var y = latLonData.coord.lon;
@@ -66,6 +70,7 @@ var getUvi = function(latLonData){
     });
 }
 
+// function that populates jumbotron with current weather info
 var displayCurrent = function(info, cityInfo){
     $('.jumbotron').append(`
             <div class= 'weatherbox ml-1'>
@@ -87,6 +92,8 @@ var displayCurrent = function(info, cityInfo){
     };
     console.log($('.uvi').text())
 };
+
+//function displays 5 cards for 5 day forecast changes display information for .toggle class
 var display5day = function(upcoming){
     for(i = 1; i < 6; i++){
         $('#5-day-display').append(`
@@ -104,7 +111,7 @@ var display5day = function(upcoming){
 }
 
 
-
+// function tells dynamically created previous search buttons what functions to call
 var prevButtonHandler = function(event) {
     cityInfo = $(this).text();
     getCurrentWeather(cityInfo);
@@ -112,6 +119,7 @@ var prevButtonHandler = function(event) {
     populateSearches();
 };
 
+//function tells search button which functions to call stops user with alert if nothing is entered
 var clickEventHandler = function(event){
     event.preventDefault();
     cityInfo = $('#city-search').val();
@@ -125,5 +133,6 @@ var clickEventHandler = function(event){
     populateSearches();
 };
 
+// assigns button funtionality
 $('.btn').on('click', clickEventHandler);
 $('.button-factory').on('click', '.prev', prevButtonHandler);
