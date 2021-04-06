@@ -86,7 +86,7 @@ var displayCurrent = function(info, cityInfo){
     if($('.uvi').text() < 3){
         $('.uvi').css('background-color', 'green')
     }else if($('uvi').text() < 6){
-        $('.uvi').css('background-color', 'yellow', 'color', 'black')
+        $('.uvi').attr('style', 'background-color: yellow; color: black !important')
     }else{
         $('.uvi').css('background-color', 'red')
     };
