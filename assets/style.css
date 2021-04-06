@@ -37,9 +37,22 @@ h2{
     text-transform: capitalize;
 }
 
+.head2{
+    font-family: 'Hind', sans-serif;
+    font-weight: 500;
+}
+
+.headline{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .jumbotron{
     background-color: var(--deep);
     color: white;
+}
+
+.main-text{
+    font-family: 'Mukta Vaani', sans-serif;
 }
 
 .search-head{
@@ -52,7 +65,7 @@ h2{
 
 .uvi{
     border: 1px solid black;
-    padding: .25rem;
+    padding: .1rem;
     border-radius: 5px;
 }
 

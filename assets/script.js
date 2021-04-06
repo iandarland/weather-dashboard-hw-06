@@ -34,7 +34,7 @@ var getCurrentWeather = function (cityInfo) {
             getUvi(data);        
             });
         } else {
-            $('#5-day-display').append(`<div class='weatherbox'>'Error: '${response.statusText}</div>`);
+            $('#5-day-display').append(`<div class='weatherbox main-text'>'Error: '${response.statusText}</div>`);
         };
     })
     // .catch(function (error) {
@@ -66,7 +66,7 @@ var getUvi = function(latLonData){
     })
     .catch(function (error) {
         alert('Sorry! we\'r having trouble connecting to our servers. Try again soon');
-        $('#5-day-display').append(`<div class='weatherbox'>Sorry! we\'r having trouble connecting to our servers. Try again soon'</div>`)
+        $('#5-day-display').append(`<div class='weatherbox'>Sorry! we\'r having trouble connecting to our servers. Try again soon.'</div>`)
     });
 }
 
@@ -74,13 +74,13 @@ var getUvi = function(latLonData){
 var displayCurrent = function(info, cityInfo){
     $('.jumbotron').append(`
             <div class= 'weatherbox ml-1'>
-            <h2 class= 'text-center'>${cityInfo}</h2>
-            <p class='text-center'>${info.current.weather[0].main}<img src ='http://openweathermap.org/img/wn/${info.current.weather[0].icon}.png'></p>
+            <h2 class= 'text-center head2'>${cityInfo}</h2>
+            <p class='text-center main-text'>${info.current.weather[0].main}<img src ='http://openweathermap.org/img/wn/${info.current.weather[0].icon}.png'></p>
             <h3>${moment().format('dddd M / D')}</h3>
-            <p>Current Temp: ${parseInt(info.current.temp)}°F</p>
-            <p>Humidity: ${info.current.humidity}%</p>
-            <p>Wind Speed: ${info.current.wind_speed}mph</p>
-            <p>UV Index: <span class= 'uvi'>${info.current.uvi}</span></p>
+            <p class= 'main-text'>Current Temp: ${parseInt(info.current.temp)}°F</p>
+            <p class= 'main-text'>Humidity: ${info.current.humidity}%</p>
+            <p class= 'main-text'>Wind Speed: ${info.current.wind_speed}mph</p>
+            <p class= 'main-text'>UV Index: <span class= 'uvi'>${info.current.uvi}</span></p>
             </div>
     `);
     if($('.uvi').text() < 3){
@@ -98,11 +98,11 @@ var display5day = function(upcoming){
     for(i = 1; i < 6; i++){
         $('#5-day-display').append(`
         <div class='d-flex flex-column col-12 col-md-5 col-xl-3 weatherbox card m-1 rounded text-center'>
-            <h3 class='card-header rounded-bottom'>${moment().add(i, 'days').format('dddd M/D')} <img src='http://openweathermap.org/img/wn/${upcoming.daily[i].weather[0].icon}.png'></h3>
+            <h3 class='card-header rounded-bottom head2'>${moment().add(i, 'days').format('dddd M/D')} <img src='http://openweathermap.org/img/wn/${upcoming.daily[i].weather[0].icon}.png'></h3>
             <div class='card-body'>
-                <p class= 'card-text'>Temp: ${parseInt(upcoming.daily[i].temp.max)}°F / ${parseInt(upcoming.daily[i].temp.min)}°F</p>
-                <p class= 'card-text'>Wind Speed: ${upcoming.daily[i].wind_speed}mph</p>
-                <p class= 'card-text'>Humidity: ${upcoming.daily[i].humidity}%</p>
+                <p class= 'card-text main-text'>Temp: ${parseInt(upcoming.daily[i].temp.max)}°F / ${parseInt(upcoming.daily[i].temp.min)}°F</p>
+                <p class= 'card-text main-text'>Wind Speed: ${upcoming.daily[i].wind_speed}mph</p>
+                <p class= 'card-text main-text'>Humidity: ${upcoming.daily[i].humidity}%</p>
             </div>
         </div>
         `)
